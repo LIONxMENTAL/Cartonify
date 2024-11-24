@@ -11,11 +11,26 @@ from tkinter import filedialog
 from tkinter import *
 from PIL import ImageTk, Image
 
-top=tk.Tk()
-top.geometry('400x400')
-top.title('Cartoonify Your Image !')
-top.configure(background='white')
-label=Label(top,background='#CDCDCD', font=('calibri',20,'bold'))
+window = tk.Tk()
+# top = tk.Tk()
+ 
+# setting attribute
+window.state('zoomed')
+window.title("Cartoonify your IMAGE here!")
+ 
+# # creating text label to display on window screen
+label = tk.Label(window)
+label.pack()
+ 
+# top.state('zoomed')
+# window.title("Cartoonify your Image here!")
+# width= window.winfo_screenwidth()               
+# height= window.winfo_screenheight()               
+# window.geometry("%dx%d" % (width, height))
+# top.title('Cartoonify Your Image !')
+# top.configure(background='white')
+# label=Label(top,background='#CDCDCD', font=('calibri',20,'bold'))
+
 
 def upload():
     ImagePath=easygui.fileopenbox()
@@ -78,7 +93,7 @@ def cartoonify(ImagePath):
     for i, ax in enumerate(axes.flat):
         ax.imshow(images[i], cmap='gray')
 
-    save1=Button(top,text="Save cartoon image",command=lambda: save(ReSized6, ImagePath),padx=30,pady=5)
+    save1=Button(window,text="Save cartoon image",command=lambda: save(ReSized6, ImagePath),padx=30,pady=5)
     save1.configure(background='#364156', foreground='white',font=('calibri',10,'bold'))
     save1.pack(side=TOP,pady=50)
     
@@ -95,8 +110,11 @@ def save(ReSized6, ImagePath):
     I= "Image saved by name " + newName +" at "+ path
     tk.messagebox.showinfo(title=None, message=I)
 
-upload=Button(top,text="Cartoonify an Image",command=upload,padx=10,pady=5)
+
+
+
+upload=Button(window,text="Cartoonify an Image",command=upload,padx=10,pady=5)
 upload.configure(background='#364156', foreground='white',font=('calibri',10,'bold'))
 upload.pack(side=TOP,pady=50)
 
-top.mainloop()
+window.mainloop()
